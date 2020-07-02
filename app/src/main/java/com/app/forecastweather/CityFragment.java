@@ -1,5 +1,6 @@
 package com.app.forecastweather;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +34,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CityFragment extends Fragment {
+
+    private float latitude, longitude;
+
+
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
     @Nullable
@@ -57,33 +62,39 @@ public class CityFragment extends Fragment {
 
         // Get Location from GPS
         LocationFinder finder;
-        double longitude = 105.8342 , latitude = 21.0278;
         finder = new LocationFinder(getContext());
         if (finder.canGetLocation()) {
-            latitude = finder.getLatitude();
-            longitude = finder.getLongitude();
+            setLatitude((float) finder.getLatitude());
+            setLongitude((float)finder.getLongitude());
         }
         //Toast.makeText(this, "lat-lng " + latitude + " — " + longitude, Toast.LENGTH_LONG).show();
-        Log.d("vi tri cua ban", String.format("%f", latitude));
+        Log.d("vi tri cua ban", String.format("%f", getLongitude()));
+
+        Intent intent = getActivity().getIntent();
+//        if (intent != null) {
+//            setLatitude(getArguments().getFloat("lat"));
+//            setLongitude(getArguments().getFloat("lon"));
+//            Log.d("truyen qua nay", getArguments().getString("city_name"));
+//        }
+//        setLatitude(getArguments().getFloat("lat"));
+//        setLongitude(getArguments().getFloat("lon"));
 
         // Prepare the api to get data
         Retrofit retrofit = ApiClient.getClient();
         ApiWeatherService apiWeatherService = retrofit.create(ApiWeatherService.class);
 
 
+
         // Get current weather
         Call<CurrentWeather> call = apiWeatherService.
                 getCurrentWeatherData(
-                        String.format("%f", latitude),
-                        String.format("%f", longitude),
+                        String.format("%f", getLatitude()),
+                        String.format("%f", getLongitude()),
                         getResources().getString(R.string.appId),
                         getResources().getString(R.string.language),
                         getResources().getString(R.string.units)
                 );
-        CityDBHelper cityDBHelper = CityDBHelper.getInstance(getContext());
-        ArrayList<City> cities = cityDBHelper.getCities();
-        City city = new City("Hanoi", "VietNam", 105.8342f, 21.0278f);
-        cities.add(city);
+        final CityDBHelper cityDBHelper = CityDBHelper.getInstance(getContext());
 
         // Get forecast Weather hourly and daily
         call.enqueue(new Callback<CurrentWeather>() {
@@ -97,8 +108,8 @@ public class CityFragment extends Fragment {
                         .into(imageViewIcon);
                 description.setText(currentWeather.getWeathers().get(0).getDescription());
 
-//                City city = new City(currentWeather.getName(), currentWeather.getSys().getCountry(), currentWeather.getCoord().getLat(), currentWeather.getCoord().getLon());
-
+                City city = new City(currentWeather.getName(), currentWeather.getSys().getCountry(), currentWeather.getCoord().getLat(), currentWeather.getCoord().getLon());
+                cityDBHelper.addCity(city);
             }
 
             @Override
@@ -111,8 +122,8 @@ public class CityFragment extends Fragment {
         // Get onecallweather to get forecast weather
         Call<OneCallWeather> onecall = apiWeatherService.
                 getOneCallWeatherData(
-                        String.format("%f", latitude),
-                        String.format("%f", longitude),
+                        String.format("%f", getLatitude()),
+                        String.format("%f", getLongitude()),
                         "",
                         "vi",
                         "metric",
@@ -144,5 +155,21 @@ public class CityFragment extends Fragment {
                 Log.d("oops OneCall", t.getMessage());
             }
         });
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 }

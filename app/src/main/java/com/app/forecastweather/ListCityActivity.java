@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +20,12 @@ import com.app.forecastweather.models.City;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListCityActivity extends AppCompatActivity {
+public class ListCityActivity extends AppCompatActivity implements CityAdapter.OnCityListener{
     Toolbar toolbar;
     RecyclerView recyclerView;
     ImageButton imageButton;
+
+    private List<City> cities = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +53,12 @@ public class ListCityActivity extends AppCompatActivity {
         City city1 = new City("Thanh Hoa", "VietNam", 105.8342f, 21.0278f);
         cityDBHelper.addCity(city);
         cityDBHelper.addCity(city1  );
-        ArrayList<City> cities = cityDBHelper.getCities();
-//        ArrayList<City> cities = new ArrayList<>();
-//        cities.add(city);
-//        cities.add(city1);
-                                                                                                                                                
 
 
         cities = cityDBHelper.getCities();
 
         // Represent the list city
-        CityAdapter cityAdapter = new CityAdapter(this, cities);
+        CityAdapter cityAdapter = new CityAdapter(this, cities, this);
         recyclerView.setAdapter(cityAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -88,5 +86,17 @@ public class ListCityActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.edit_menu, menu);
         return true;
+    }
+
+    @Override
+    public void onCityClick(int position) {
+        Log.d("click city", "onClick:clicked" + position);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("city_name", cities.get(position).getName());
+        intent.putExtra("country", cities.get(position).getCountry());
+        intent.putExtra("lat", cities.get(position).getLat());
+        intent.putExtra("lon", cities.get(position).getLon());
+        startActivity(intent);
     }
 }

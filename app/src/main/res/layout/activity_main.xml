@@ -21,12 +21,17 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <fragment
-        android:name="com.app.forecastweather.CityFragment"
-        android:id="@+id/cityFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+<!--    <fragment-->
+<!--        android:name="com.app.forecastweather.CityFragment"-->
+<!--        android:id="@+id/cityFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/frame_layout"/>
+
     </androidx.core.widget.NestedScrollView>
 
 
