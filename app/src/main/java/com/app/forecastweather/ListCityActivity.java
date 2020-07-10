@@ -38,7 +38,6 @@ public class ListCityActivity extends AppCompatActivity implements CityAdapter.O
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Danh sách thành phố");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,10 +48,10 @@ public class ListCityActivity extends AppCompatActivity implements CityAdapter.O
 
         // Create some fake city data
         CityDBHelper cityDBHelper = CityDBHelper.getInstance(this);
-        City city = new City("Ha Noi", "VietNam", 105.8342f, 21.0278f);
-        City city1 = new City("Thanh Hoa", "VietNam", 105.8342f, 21.0278f);
+        City city = new City("Hà Nội", "VN", 105.84f, 21.02f);
+        City city1 = new City("London", "UK", -0.13f, 51.51f);
         cityDBHelper.addCity(city);
-        cityDBHelper.addCity(city1  );
+        cityDBHelper.addCity(city1);
 
 
         cities = cityDBHelper.getCities();
@@ -93,10 +92,16 @@ public class ListCityActivity extends AppCompatActivity implements CityAdapter.O
         Log.d("click city", "onClick:clicked" + position);
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("city_name", cities.get(position).getName());
-        intent.putExtra("country", cities.get(position).getCountry());
-        intent.putExtra("lat", cities.get(position).getLat());
-        intent.putExtra("lon", cities.get(position).getLon());
+        Bundle bundle = new Bundle();
+        bundle.putString("flag", "OK");
+        bundle.putString("city_name", cities.get(position).getName());
+        bundle.putString("country", cities.get(position).getCountry());
+        bundle.putFloat("lat", cities.get(position).getLat());
+        bundle.putFloat("lon", cities.get(position).getLon());
+        intent.putExtras(bundle);
         startActivity(intent);
+
     }
+
+
 }

@@ -43,7 +43,7 @@ public class CityDBHelper extends SQLiteOpenHelper {
                 CityTable.COLUMN_COUNTRY + " TEXT, " +
                 CityTable.COLUMN_LAT + " REAL, " +
                 CityTable.COLUMN_LONG + " REAL, " +
-                "UNIQUE(" + CityTable.COLUMN_NAME + "," + CityTable.COLUMN_COUNTRY + ")"+
+                "UNIQUE(" + CityTable.COLUMN_NAME + ")"+
                 ")";
 
         db.execSQL(SQL_CREATE_CITY_TABLE);
@@ -59,8 +59,6 @@ public class CityDBHelper extends SQLiteOpenHelper {
     }
 
     public void addCity(City city) {
-//        db = getReadableDatabase();
-//        Cursor c = db.query("SELECT * FROM " + CityTable.TABLE_NAME + "WHERE" +
         db = getWritableDatabase();
 
         ContentValues cv = new ContentValues();

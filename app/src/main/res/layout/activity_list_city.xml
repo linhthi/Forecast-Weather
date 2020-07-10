@@ -23,11 +23,14 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/blue_300"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round_button"
         app:srcCompat="@drawable/ic_baseline_add_24" />
 
 

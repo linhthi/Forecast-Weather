@@ -27,6 +27,14 @@ public interface ApiWeatherService {
             @Query("units") String units
     );
 
+    @GET("weather")
+    Call<CurrentWeather> getCurrentWeather(
+            @Query("q") String cityName,
+            @Query("appid") String appId,
+            @Query("lang") String lang,
+            @Query("units") String units
+    );
+
     /**
      * Get one call weather data of city
      * @param lat

@@ -23,34 +23,56 @@
         android:text="Tìm kiếm tên thành phố"
         android:layout_gravity="center"
         android:layout_marginRight="30dp"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         />
+
+        <ImageButton
+            android:id="@id/search_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/blue_300"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_gravity="end"
+            />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/textViewCityIn"
-        android:layout_width="wrap_content"
+        android:id="@+id/city_result"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_marginLeft="25dp"
-        android:text="Thành phố trong nước"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/haiphong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:text="Hai Phong"
-        android:layout_below="@id/textViewCityIn"/>
-
-    <Button
-        android:id="@+id/cantho"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Can Tho"
-        android:layout_toRightOf="@+id/haiphong"
-        android:layout_alignBaseline="@id/haiphong"
+        android:text="Thanh pho"
+        android:textSize="20sp"
+        android:layout_below="@id/my_toolbar"
+        android:layout_marginLeft="20dp"
+        android:visibility="gone"
         />
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewCityIn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/city_result"-->
+<!--        android:layout_marginLeft="25dp"-->
+<!--        android:text="Thành phố trong nước"-->
+<!--        android:textSize="20dp" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/haiphong"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="25dp"-->
+<!--        android:text="Hai Phong"-->
+<!--        android:layout_below="@id/textViewCityIn"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/cantho"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Can Tho"-->
+<!--        android:layout_toRightOf="@+id/haiphong"-->
+<!--        android:layout_alignBaseline="@id/haiphong"-->
+<!--        />-->
 
 
 

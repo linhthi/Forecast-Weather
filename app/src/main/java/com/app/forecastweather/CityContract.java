@@ -1,6 +1,9 @@
 package com.app.forecastweather;
 
+import android.os.Bundle;
 import android.provider.BaseColumns;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public final class CityContract {
     private CityContract() {
@@ -14,4 +17,5 @@ public final class CityContract {
         public static final String COLUMN_LAT = "latitude";
         public static final String COLUMN_LONG = "longitude";
     }
+
 }

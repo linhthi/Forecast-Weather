@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ListCityActivity">
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/action_edit"
         android:orderInCategory="200"
         android:title="Sửa"
         app:showAsAction="ifRoom" />
