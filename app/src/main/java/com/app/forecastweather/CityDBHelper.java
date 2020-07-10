@@ -70,6 +70,11 @@ public class CityDBHelper extends SQLiteOpenHelper {
         db.insert(CityTable.TABLE_NAME, null, cv);
     }
 
+    public void deleteCity(int cityID) {
+        db = getWritableDatabase();
+        db.delete(CityTable.TABLE_NAME, CityTable._ID + "=" + String.format("%d", cityID), null);
+    }
+
     public ArrayList<City> getCities() {
         ArrayList<City> cityArrayList = new ArrayList<>();
         db = getReadableDatabase();

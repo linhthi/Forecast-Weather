@@ -46,14 +46,8 @@ public class ListCityActivity extends AppCompatActivity implements CityAdapter.O
         });
 
 
-        // Create some fake city data
+        // Get cities data
         CityDBHelper cityDBHelper = CityDBHelper.getInstance(this);
-        City city = new City("Hà Nội", "VN", 105.84f, 21.02f);
-        City city1 = new City("London", "UK", -0.13f, 51.51f);
-        cityDBHelper.addCity(city);
-        cityDBHelper.addCity(city1);
-
-
         cities = cityDBHelper.getCities();
 
         // Represent the list city

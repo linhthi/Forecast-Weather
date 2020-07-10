@@ -70,6 +70,7 @@ public class AddCityActivity extends AppCompatActivity {
                 if (searchCity.getText().toString().equals(stringDefault)) {
                     searchCity.setText("");
                 }
+                cityResult.setVisibility(View.GONE);
                 return false;
             }
         });
@@ -94,8 +95,7 @@ public class AddCityActivity extends AppCompatActivity {
                         .setTitleText("Thêm thành công!")
                         .show();
 
-                Intent intent = new Intent(AddCityActivity.this, ListCityActivity.class);
-                startActivity(intent);
+                backToListCityActivity();
             }
         });
 
@@ -152,9 +152,7 @@ public class AddCityActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void addHaiPhong() {
 
-    }
 
     private void performSearch() {
         searchCity.clearFocus();

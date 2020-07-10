@@ -2,6 +2,8 @@ package com.app.forecastweather;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         description = (TextView) findViewById(R.id.txtDescription);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView1 = (RecyclerView) findViewById(R.id.recyclerViewDaily);
+
 
 
         // Get Location from GPS
